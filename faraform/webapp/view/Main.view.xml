@@ -1,0 +1,4 @@
+<mvc:View controllerName="news.uk.fara.controller.Main" busy="{MainProperties>/busy}" busyIndicatorDelay="{MainProperties>/busyIndicatorDelay}" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+	<SplitApp id="fioriContent"></SplitApp>
+</mvc:View>

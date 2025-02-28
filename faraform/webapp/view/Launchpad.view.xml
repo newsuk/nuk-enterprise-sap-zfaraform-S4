@@ -1,0 +1,36 @@
+<mvc:View height="100%" controllerName="news.uk.fara.controller.Launchpad"
+  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core"
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+  <Page enableScrolling="false">
+    <customHeader>
+			<Bar class="header">
+				<contentLeft>
+				</contentLeft>
+
+				<contentMiddle>
+					<Title text="{i18n>faraForm.launchpad.title}" />
+				</contentMiddle>
+
+				<contentRight>
+					<Button icon="sap-icon://sys-help" tooltip="{i18n>help.tooltip}" press="doHelp"/>
+			    <Button icon="sap-icon://log" tooltip="{i18n>logout.tooltip}" press="doLogout"/>
+					<Image src="{FaraFormProperties>/newsUKLogoURL}" width="115px" height="30px" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+    <content>
+      <TileContainer
+        id="tileContainer"
+        tiles="{TilesModel>/}">
+        <StandardTile
+          icon="sap-icon://{TilesModel>icon}"
+          type="{TilesModel>type}"
+          title="{TilesModel>title}"
+          visible="{TilesModel>visible}"
+          app:key="{TilesModel>key}"
+          press="onPressTile"
+        />
+      </TileContainer>
+    </content>
+ </Page>
+</mvc:View>

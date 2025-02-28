@@ -1,0 +1,313 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "news.uk.fara",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.49.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+        
+            "zod_fara_forms_srv": {
+                "uri": "/sap/opu/odata/sap/zod_fara_forms_srv",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/zod_fara_forms_srv/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_bluecrystal",
+            "sap_belize"
+        ],
+        "fullWidth": true
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "news.uk.fara.view.Main",
+            "type": "XML"
+        },
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "news.uk.fara.i18n.i18n"
+                }
+            },
+            "TilesModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "localresources/jsonModel/tiles.json",
+                "preload": true
+            },
+            "Constants": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/constants.json",
+                "preload": true
+            },
+            "MainProperties": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/mainProperties.json",
+                "preload": true
+            },
+            "MasterProperties": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/masterProperties.json",
+                "preload": true
+            },
+            "FormsModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/formsItems.json",
+                "preload": true
+            },
+            "FormsStatus": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/formsStatus.json",
+                "preload": true
+            },
+            "FormsFilterModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/formsFilter.json",
+                "preload": true
+            },
+            "FaraFormProperties": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/faraFormProperties.json",
+                "preload": true
+            },
+            "FaraFormModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/faraFormModel.json",
+                "preload": true
+            },
+            "CostCentersModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/costCentersModel.json",
+                "preload": true
+            },
+            "CostCentersOtherDeptModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/costCentersOtherDeptModel.json",
+                "preload": true
+            },
+            
+            "PublicationCostCentersModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/costCentersModel.json",
+                "preload": true
+            },
+            "DepartmentCostCentersModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/costCentersModel.json",
+                "preload": true
+            },
+            "CodingGroupsModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/codingGroupsModel.json",
+                "preload": true
+            },
+            "TransactionsModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/transactionsModel.json",
+                "preload": true
+            },
+            "ExistingRolesModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/existingRolesModel.json",
+                "preload": true
+            },
+            "AuthLevelsModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/authLevelsModel.json",
+                "preload": true
+            },
+            "DepartmentsModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/departmentsModel.json",
+                "preload": true
+            },
+            "CurrentUserModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/currentUserModel.json",
+                "preload": true
+            },
+            "UsersSearchModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/userSearchModel.json",
+                "preload": true
+            },
+            "ErrorDialogModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/errorDialogModel.json",
+                "preload": true
+            },
+            "ReasonRejectionDialogModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/reasonRejectionDialogModel.json",
+                "preload": true
+            },
+            "CurrentUrlModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/currentURL.json",
+                "preload": true
+            },
+            "ApprovalHistoryModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": "localresources/jsonModel/approvalHistory.json",
+                "preload": true
+            },
+            "zod_fara_forms_srv": {
+                "dataSource": "zod_fara_forms_srv",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "resources/css/styles.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "news.uk.fara.view",
+                "controlId": "fioriContent",
+                "controlAggregation": "detailPages",
+                "bypassed": {
+                    "target": [
+                        "notFound",
+                        "EmptyMaster"
+                    ]
+                }
+            },
+            "routes": [
+
+                {
+                   
+                    "pattern": "",
+                    "name": "Launchpad",
+                    "target": ["Launchpad", "EmptyMaster"]
+                },
+      
+                {
+                    "pattern": "WaitingApproval",
+                    "name": "WaitingApproval",
+                    "target": [
+                        "SelectForm",
+                        "Master"
+                    ]
+                },
+                {
+                    "pattern": "Start",
+                    "name": "Master",
+                    "target": [
+                        "SelectForm",
+                        "Master"
+                    ]
+                },
+                {
+                    "pattern": "Base",
+                    "name": "Base",
+                    "target": [
+                        "BaseDetail",
+                        "Master"
+                    ]
+                },
+                {
+                    "pattern": "CreateFaraForm",
+                    "name": "CreateFaraForm",
+                    "target": [
+                        "Master",
+                        "CreateFaraForm"
+                    ]
+                },
+                {
+                    "pattern": "FaraForm/{id}",
+                    "name": "FaraForm",
+                    "target": [
+                        "Master",
+                        "FaraForm"
+                    ]
+                },
+                {
+                    "pattern": "FaraFormApprove/{id}",
+                    "name": "FaraFormApprove",
+                    "target": [
+                        "Master",
+                        "FaraForm"
+                    ]
+                }
+            ],
+            "targets": {
+             
+           
+           "Master": {
+                    "viewName": "Master",
+                    "controlAggregation": "masterPages"
+                },
+                "EmptyMaster": {
+                    "viewName": "EmptyMaster",
+                    "controlAggregation": "masterPages"
+                },
+                "Launchpad": {
+                    "viewName": "Launchpad"
+                },
+                "notFound": {
+                    "viewName": "NotFound"
+                },
+           
+                "SelectForm": {
+                    "viewName": "SelectForm"
+                },
+                "BaseDetail": {
+                    "viewName": "BaseDetail"
+                },
+                "CreateFaraForm": {
+                    "viewName": "FaraForm"
+                },
+                "FaraForm": {
+                    "viewName": "FaraForm"
+                }
+            }
+        }
+    }
+}

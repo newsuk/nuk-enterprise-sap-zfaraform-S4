@@ -1,0 +1,7 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="news.uk.fara.controller.BaseController" displayBlock="true">
+		<MessagePage
+			title="{i18n>baseForm.title}"
+			text="{i18n>baseForm.text}"
+			icon="sap-icon://form"
+			description=""/>
+</mvc:View>

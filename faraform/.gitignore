@@ -1,0 +1,23 @@
+.eslintrc.js
+.tern-project
+deploy.conf
+dist/
+distzip/
+mydeploy.js
+node_modules/
+webapp/test/
+webapp/Component-preload.js
+News UK - FARA.zip
+*.swp
+*.*~
+
+node_modules/
+dist/
+.scp/
+.env
+Makefile*.mta
+mta_archives
+mta-*
+resources
+archive.zip
+.*_mta_build_tmp

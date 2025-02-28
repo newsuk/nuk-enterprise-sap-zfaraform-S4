@@ -1,0 +1,31 @@
+// main: styles.less
+
+// *----------------------------------------------
+// *----- Vars
+// *----------------------------------------------
+@login-app-panel-border: 1px solid #000000;
+@login-app-panel-box-shadow: 5px 5px 7px #808888;
+
+@login-app-title-font-family: 'Oswald', serif !important;
+@login-app-title-font-size: 40px !important;
+
+@login-app-text-font-family: 'Oswald', serif !important;
+@login-app-text-font-size: 14px !important;
+
+// *----------------------------------------------
+// *----- Mixins
+// *----------------------------------------------
+.login-app-solidBorder() {
+  border: @login-app-panel-border;
+  box-shadow: @login-app-panel-box-shadow;
+}
+
+.login-app-loginTitle() {
+  font-family: @login-app-title-font-family;
+  font-size: @login-app-title-font-size;
+}
+
+.login-app-loginText() {
+  font-family: @login-app-text-font-family;
+  font-size: @login-app-text-font-family;
+}

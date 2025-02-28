@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZOD_FARA_FORMS_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="CostCenterDepartment" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DepartmentID"/>
+                </Key>
+                <Property Name="Filter" Type="ZOD_FARA_FORMS_SRV.CostCenterFilterCT" Nullable="false"/>
+                <Property Name="DepartmentID" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Cost Center Department ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DepartmentName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Publication" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PublicationID"/>
+                </Key>
+                <Property Name="PublicationID" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Publication ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PublicationName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Publication Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Department" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DepartmentID"/>
+                </Key>
+                <Property Name="DepartmentID" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Department" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DepartmentName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Dept description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FormStatus" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Form Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusDescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Short Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="UserLookup" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UserName"/>
+                </Key>
+                <Property Name="UserName" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FullName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Empl./appl.name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="JobTitle" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Position name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="TransactionCode" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TCode"/>
+                </Key>
+                <Property Name="TCode" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Transaction Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TCodeDescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="TCode description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="User" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UserName"/>
+                </Key>
+                <Property Name="UserName" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FullName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Empl./appl.name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="JobTitle" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Position name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Department" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name of Org Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IsEditorial" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Editorial?" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ControllingArea" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="CO Area" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenter" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Cost center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenterName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenterDept" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Cost ctr group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenterDeptName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CanSelectOtherDept" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Other Dept.?" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CanApproveDept" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="App. Dept?" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ManagerUserName" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Manager" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ManagerFullName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Manager Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Phone" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Phone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Email" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HasASL" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Has ASL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ASLLevel" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ASL Level" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HasSignature" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Has Signature" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ASLCostCenter" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ASL Cost Centers (CSV)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ASLCostCenterOtherDept" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ASL Cost Centers, Other departments (CSV)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ASLDept" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ASL Departments (CSV)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Roles" Relationship="ZOD_FARA_FORMS_SRV.UserRole" FromRole="FromRole_UserRole" ToRole="ToRole_UserRole"/>
+            </EntityType>
+            <EntityType Name="Role" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="RoleName"/>
+                </Key>
+                <Property Name="Filter" Type="ZOD_FARA_FORMS_SRV.RoleFilterCT" Nullable="false"/>
+                <Property Name="RoleName" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Role" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoleDescription" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Short Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ASLLevel" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ASLLevelID"/>
+                </Key>
+                <Property Name="ASLLevelID" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Resources" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ASLLevelName" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Resource name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CostCenter" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CostCenterNumber"/>
+                </Key>
+                <Property Name="Filter" Type="ZOD_FARA_FORMS_SRV.CostCenterFilterCT" Nullable="false"/>
+                <Property Name="CostCenterNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Cost Center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenterName" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Cost Center Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenterDepartment" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Cost Center Department" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenterDepartmentName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Cost Center Department Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="UserAuth" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Email"/>
+                </Key>
+                <Property Name="Email" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Email Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserName" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Token" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Google Auth Token" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="APCodingGroup" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="APCodingGroupID"/>
+                </Key>
+                <Property Name="APCodingGroupID" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Resources" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APCodingGroupName" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="AP Coding Group Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FARAForm" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="FormID"/>
+                </Key>
+                <Property Name="FormID" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Form ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FormExtID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Form Ext. ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserIdReqAccess" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User req access" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Last Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastChangedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubmittedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Submitted by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubmittedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Submitted On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Phone" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FormType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Form Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Form Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RejectionReason" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Rejection reason" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExpenseApproverRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Expense Appr Rol Req" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExpenseValidatorRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Expense Approver Rol" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SRMBuyerRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="SRM Buyer Role Req." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SRMApproverRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="SRM Buyer Role Req." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PMPORoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="PM PO Roles Req." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PMMRPRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="PM MRP Roles Req." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ECSCommissionEditorRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ECS Comm. Ed Rle Req" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ECSDeskAdminitratorRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ECS Desk Adm Rle Req" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ECSDeskheadApproverRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ECS Dkhd Appr Rl Req" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ECSContribCoordinatRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ECS Cont Coor Rl Req" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ECSManagingEditorRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ECS Mngng Ed Rle Req" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ECSPublicationID" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Publication ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ECSCostCentres" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ECS Cost Centers" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CMSDeskheadRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="CMS Dsk-hd Role Req." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CMSRegionalApprovRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="CMS Regi Appr Rl Req" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CMSManagingEditorRoleReq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="CMS Man Ed Role Req" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CMSDepartmentID" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Department" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CMSCostCentres" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CMS Cost Centers" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserIdToCopy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User ID to copy" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Transactions" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Transactions" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Roles" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Roles" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedByNameText" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FormTypeList" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Form Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserIdReqAccessName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="User Name of requester" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WorkitemID" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Work Item ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MyApprovals" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Awaiting App." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L1ApprovedStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Form Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L1ApprovedStatusText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L1ApprovedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Last Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L1ApprovedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L2ApprovedStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Form Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L2ApprovedStatusText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L2ApprovedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Last Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L2ApprovedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L3ApprovedStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Form Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L3ApprovedStatusText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L3ApprovedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Last Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="L3ApprovedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <ComplexType Name="Auth">
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="256" sap:label="Email Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Token" Type="Edm.String" Nullable="false" MaxLength="256" sap:label="Token" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="ReturnValue">
+                <Property Name="Success" Type="Edm.Boolean" Nullable="false" sap:label="Success" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="RoleFilterCT">
+                <Property Name="UserName" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Trans" Type="Edm.Boolean" Nullable="false" sap:label="TRUE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="WorkItemId">
+                <Property Name="WorkItemIdNbr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Work Item ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <ComplexType Name="CostCenterFilterCT">
+                <Property Name="UserName" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DepartmentID" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Department" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PublicationID" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Publication ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OtherDept" Type="Edm.Boolean" Nullable="false" sap:label="Checkbox" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </ComplexType>
+            <Association Name="UserRole" sap:content-version="1">
+                <End Type="ZOD_FARA_FORMS_SRV.User" Multiplicity="1" Role="FromRole_UserRole"/>
+                <End Type="ZOD_FARA_FORMS_SRV.Role" Multiplicity="*" Role="ToRole_UserRole"/>
+            </Association>
+            <EntityContainer Name="ZOD_FARA_FORMS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CostCenterDepartmentSet" EntityType="ZOD_FARA_FORMS_SRV.CostCenterDepartment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PublicationSet" EntityType="ZOD_FARA_FORMS_SRV.Publication" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="DepartmentSet" EntityType="ZOD_FARA_FORMS_SRV.Department" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="FormStatusSet" EntityType="ZOD_FARA_FORMS_SRV.FormStatus" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="UserLookupSet" EntityType="ZOD_FARA_FORMS_SRV.UserLookup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="TransactionCodeSet" EntityType="ZOD_FARA_FORMS_SRV.TransactionCode" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="UserSet" EntityType="ZOD_FARA_FORMS_SRV.User" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="RoleSet" EntityType="ZOD_FARA_FORMS_SRV.Role" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ASLLevelSet" EntityType="ZOD_FARA_FORMS_SRV.ASLLevel" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CostCenterSet" EntityType="ZOD_FARA_FORMS_SRV.CostCenter" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:requires-filter="true" sap:content-version="1"/>
+                <EntitySet Name="UserAuthSet" EntityType="ZOD_FARA_FORMS_SRV.UserAuth" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="APCodingGroupSet" EntityType="ZOD_FARA_FORMS_SRV.APCodingGroup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="FARAFormSet" EntityType="ZOD_FARA_FORMS_SRV.FARAForm" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="UserRoleSet" Association="ZOD_FARA_FORMS_SRV.UserRole" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="UserSet" Role="FromRole_UserRole"/>
+                    <End EntitySet="RoleSet" Role="ToRole_UserRole"/>
+                </AssociationSet>
+                <FunctionImport Name="CheckWorkitem" ReturnType="ZOD_FARA_FORMS_SRV.WorkItemId" m:HttpMethod="GET">
+                    <Parameter Name="CurrentUser" Type="Edm.String" Mode="In" MaxLength="12" sap:label="User"/>
+                    <Parameter Name="FormId" Type="Edm.String" Mode="In" MaxLength="32"/>
+                </FunctionImport>
+                <FunctionImport Name="SubmitForm" ReturnType="ZOD_FARA_FORMS_SRV.ReturnValue" m:HttpMethod="GET" sap:label="Submit FARA Form">
+                    <Parameter Name="CurrentUser" Type="Edm.String" Mode="In" MaxLength="12" sap:label="User"/>
+                    <Parameter Name="FormId" Type="Edm.String" Mode="In" MaxLength="32" sap:label="Form ID"/>
+                </FunctionImport>
+                <FunctionImport Name="RejectWorkitem" ReturnType="ZOD_FARA_FORMS_SRV.ReturnValue" m:HttpMethod="GET">
+                    <Parameter Name="WorkitemID" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Work Item ID"/>
+                    <Parameter Name="CurrentUser" Type="Edm.String" Mode="In" MaxLength="12" sap:label="User"/>
+                    <Parameter Name="RejectionReason" Type="Edm.String" Mode="In" sap:label="Rejection reason"/>
+                    <Parameter Name="FormId" Type="Edm.String" Mode="In" MaxLength="32" sap:label="Form ID"/>
+                </FunctionImport>
+                <FunctionImport Name="ApproveWorkitem" ReturnType="ZOD_FARA_FORMS_SRV.ReturnValue" m:HttpMethod="GET">
+                    <Parameter Name="WorkitemID" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Work Item ID"/>
+                    <Parameter Name="CurrentUser" Type="Edm.String" Mode="In" MaxLength="12" sap:label="User"/>
+                    <Parameter Name="FormId" Type="Edm.String" Mode="In" MaxLength="32" sap:label="Form ID"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="https://newsdevbas.dni.dev.internal:44301/sap/opu/odata/sap/zod_fara_forms_srv/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://newsdevbas.dni.dev.internal:44301/sap/opu/odata/sap/zod_fara_forms_srv/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

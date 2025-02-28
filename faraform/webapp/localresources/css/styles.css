@@ -1,0 +1,70 @@
+.solidBorder {
+  border: 1px solid #000000;
+  box-shadow: 5px 5px 7px #808888;
+}
+.loginTitle {
+  font-family: 'Oswald', serif !important;
+  font-size: 40px !important;
+}
+.loginText {
+  font-family: 'Oswald', serif !important;
+  font-size: 'Oswald', serif !important;
+}
+.header.sapMIBar.sapMHeader-CTX {
+  background-color: white;
+}
+.textTitle {
+  font-size: 32px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.textSubtitle {
+  font-size: 18px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.textHeader {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.requiredLabel {
+  padding-right: 0.65rem;
+}
+.requiredLabel:before {
+  content: "*";
+  color: #c14646;
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 0;
+  position: relative;
+  top: 0.25rem;
+  left: 0rem;
+}
+.requiredText {
+  padding-right: 0.65rem;
+}
+.requiredText:before {
+  content: "*";
+  color: #c14646;
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 0;
+  position: relative;
+  top: 0.1rem;
+  left: 0.1rem;
+}
+.invisibleSelectedHeader .sapMTB-Info-CTX.sapMTB {
+  display: none !important;
+}
+.invisible {
+  display: none !important;
+}
+.invisible.sapMSplitContainerMaster {
+  display: none !important;
+}
+.invisible .sapMSplitContainerMaster {
+  display: none !important;
+}
+.wrapObjectAttributeText .sapMTextNoWrap {
+  white-space: normal;
+}

@@ -1,0 +1,982 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:nuk="news.uk.fara.localresources.controls"
+	controllerName="news.uk.fara.controller.FaraForm" displayBlock="true">
+	<Page title="{i18n>faraForm.title}" backgroundDesign="Solid">
+		<customHeader>
+			<Bar class="header">
+				<contentLeft>
+				</contentLeft>
+
+				<contentMiddle>
+					<Title text="{i18n>faraForm.title}" />
+				</contentMiddle>
+
+				<contentRight>
+					<Button icon="sap-icon://sys-help" tooltip="{i18n>help.tooltip}" press="doHelp"/>
+			    <Button icon="sap-icon://log" tooltip="{i18n>logout.tooltip}" press="doLogout"/>
+					<Image src="{FaraFormProperties>/newsUKLogoURL}" width="115px" height="30px" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox>
+
+				<!-- Header titles and text -->
+
+				<FlexBox alignItems="Center" justifyContent="Center">
+					<Text text="{i18n>faraForm.header}" class="textTitle"/>
+				</FlexBox>
+				<Text text="{i18n>faraForm.subheader}" class="textSubtitle"/>
+				<HBox class="textHeader">
+					<Text text="{i18n>faraForm.supportText}"/>
+					<ToolbarSpacer width="0.4rem"/>
+					<Link text="{i18n>faraForm.supportAddress}" href="mailto:{i18n>faraForm.supportAddress}"/>
+				</HBox>
+
+				<!-- Area Request, ASL or SAP -->
+
+				<f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" title="{i18n>faraForm.areaRequestForm.title}" labelSpanL="3" labelSpanM="3" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1" backgroundDesign="Solid">
+					<f:content>
+						<RadioButton groupName="AreaRequest" text="{i18n>faraForm.areaRequestForm.approvedSignatureCheck}"
+							selected="{FaraFormModel>/areaRequestForm/approvedSignatureSelected}" select="onApprovedSignatureSelect"
+							enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L4 M4 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</RadioButton>
+						<Text text="{i18n>faraForm.areaRequestForm.approvedSignatureDescription}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Text>
+
+						<!-- Below disabled -->
+						<!--
+						<RadioButton groupName="AreaRequest" text="{i18n>faraForm.areaRequestForm.sapCheck}"
+							selected="{FaraFormModel>/areaRequestForm/sapSelected}" select="onSAPSelect"
+							enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L4 M4 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</RadioButton>
+						<Text text="{i18n>faraForm.areaRequestForm.sapDescription}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Text>
+						-->
+					</f:content>
+				</f:SimpleForm>
+
+				<!-- Who requires access, Yourself or Someone else -->
+				<!-- If SAP or ASL are selected, both options are shown -->
+
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.whoRequiresForm.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+          visible="{= ${FaraFormModel>/areaRequestForm/sapSelected} || ${FaraFormModel>/areaRequestForm/approvedSignatureSelected}}">
+					<f:content>
+						<RadioButton groupName="WhoRequires" text="{i18n>faraForm.whoRequiresForm.yourselfCheck}"
+							selected="{FaraFormModel>/whoRequiresForm/yourselfSelected}" select="onYourselfSelect"
+							enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L4 M4 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</RadioButton>
+						<Text text="{i18n>faraForm.whoRequiresForm.yourselfDescription}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Text>
+
+						<RadioButton groupName="WhoRequires" text="{i18n>faraForm.whoRequiresForm.someoneElseCheck}"
+							selected="{FaraFormModel>/whoRequiresForm/someoneElseSelected}" select="onSomeoneElseSelect"
+							enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L4 M4 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</RadioButton>
+						<Text text="{i18n>faraForm.whoRequiresForm.someoneElseDescription}">
+							<layoutData>
+								<l:GridData span="L8 M8 S12"/>
+							</layoutData>
+						</Text>
+					</f:content>
+				</f:SimpleForm>
+
+				<!-- Your details -->
+
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.yourDetailsForm.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{FaraFormModel>/whoRequiresForm/yourselfSelected}">
+					<f:content>
+				    <!--
+						<Text text="{i18n>faraForm.yourDetailsForm.headerText}">
+							<layoutData>
+								<l:GridData span="L12 M12 S12"/>
+							</layoutData>
+						</Text>
+						-->
+						<Label text="{i18n>faraForm.yourDetailsForm.name}"/>
+						<Input value="{FaraFormModel>/yourDetailsForm/name}" enabled="false"/>
+						<Label text="{i18n>faraForm.yourDetailsForm.jobTitle}"/>
+						<Input value="{FaraFormModel>/yourDetailsForm/jobTitle}" enabled="false"/>
+						<Label text="{i18n>faraForm.yourDetailsForm.department}"/>
+						<Input value="{FaraFormModel>/yourDetailsForm/department}" enabled="false"/>
+						<Label text="{i18n>faraForm.yourDetailsForm.manager}"/>
+						<Input value="{FaraFormModel>/yourDetailsForm/manager}" enabled="false"/>
+						<Label text="{i18n>faraForm.yourDetailsForm.homeCostCenter}"/>
+						<Input value="{ parts: ['FaraFormModel>/yourDetailsForm/homeCostCenter', 'FaraFormModel>/yourDetailsForm/homeCostCenterName'], formatter: '.formatter.formatCostCenterDesc' }"
+						  enabled="false"/>
+						<Label text="{i18n>faraForm.yourDetailsForm.mail}"/>
+						<Input id="yourDetailsFormMail" value="{FaraFormModel>/yourDetailsForm/mail}"
+							change=".inputType.changeInputEmail" liveChange=".inputType.liveChangeInputEmail"
+							enabled="false"/>
+					</f:content>
+				</f:SimpleForm>
+
+				<!-- Creating access for someone else -->
+				<!-- Shown when "Someone else" is selected for SAP or ASL -->
+
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.creatingAccess.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{FaraFormModel>/whoRequiresForm/someoneElseSelected}">
+					<f:content>
+						<Text text="{i18n>faraForm.creatingAccess.headerText}">
+							<layoutData>
+								<l:GridData span="L12 M12 S12"/>
+							</layoutData>
+						</Text>
+
+						<Label text="{i18n>faraForm.creatingAccess.name}"/>
+						<SearchField
+							id="creatingAccessSearchName"
+							value="{FaraFormModel>/creatingAccess/name}"
+							search="onSearchNameCreatingAccess"
+							liveChange="onUserSearchLiveChange"
+							suggest="onSearchUsersSuggestSearch"
+							suggestionItems="{UsersSearchModel>/users}"
+							showSearchButton="{FaraFormModel>/creatingAccess/magnifier}"
+							enabled="{FaraFormProperties>/canEdit}">
+							<suggestionItems>
+								<SuggestionItem text="{UsersSearchModel>FullName}" description="{UsersSearchModel>UserName} - {UsersSearchModel>JobTitle}" key="{UsersSearchModel>UserName}"/>
+							</suggestionItems>
+						</SearchField>
+
+						<Label text="{i18n>faraForm.creatingAccess.jobTitle}" visible="{FaraFormProperties>/creatingAccessDataVisible}"/>
+						<Input value="{FaraFormModel>/creatingAccess/jobTitle}" visible="{FaraFormProperties>/creatingAccessDataVisible}" enabled="false"/>
+						<Label text="{i18n>faraForm.creatingAccess.department}" visible="{FaraFormProperties>/creatingAccessDataVisible}"/>
+						<Input value="{FaraFormModel>/creatingAccess/department}" visible="{FaraFormProperties>/creatingAccessDataVisible}" enabled="false"/>
+						<Label text="{i18n>faraForm.creatingAccess.manager}" visible="{FaraFormProperties>/creatingAccessDataVisible}"/>
+						<Input value="{FaraFormModel>/creatingAccess/manager}" visible="{FaraFormProperties>/creatingAccessDataVisible}" enabled="false"/>
+						<Label text="{i18n>faraForm.creatingAccess.homeCostCenter}" visible="{FaraFormProperties>/creatingAccessDataVisible}"/>
+						<Input value="{ parts: ['FaraFormModel>/creatingAccess/homeCostCenter', 'FaraFormModel>/creatingAccess/homeCostCenterName'], formatter: '.formatter.formatCostCenterDesc' }"
+						  enabled="false" visible="{FaraFormProperties>/creatingAccessDataVisible}"/>
+						<Label text="{i18n>faraForm.creatingAccess.mail}" visible="{FaraFormProperties>/creatingAccessDataVisible}"/>
+						<Input id="creatingAccessFormMail" value="{FaraFormModel>/creatingAccess/mail}"
+							change=".inputType.changeInputEmail" liveChange=".inputType.liveChangeInputEmail"
+							visible="{FaraFormProperties>/creatingAccessDataVisible}" enabled="false"/>
+
+					</f:content>
+				</f:SimpleForm>
+
+				<!-- No Title for this section that allows to select Limits, Cost Centers, Approver and Coder -->
+				<!-- Shown automatically just below Your Details when ASL is selected -->
+
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+          title="{i18n>faraForm.aslAuth.title}"
+					labelSpanL="4"
+					labelSpanM="5"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{=${FaraFormModel>/areaRequestForm/approvedSignatureSelected}}">
+					<f:content>
+						<Text text="{i18n>faraForm.aslAuth.headerText}">
+							<layoutData>
+								<l:GridData span="L12 M12 S12"/>
+							</layoutData>
+						</Text>
+						<Link text="{i18n>faraForm.aslAuth.viewAuthorisation}" press="onViewAuthorisationPress">
+							<layoutData>
+								<l:GridData span="L4 M5 S12"/>
+							</layoutData>
+						</Link>
+						<Select selectedKey="{FaraFormModel>/aslAuth/levelSelected}" items="{AuthLevelsModel>/levels}"
+							enabled="{FaraFormProperties>/canEdit}">
+							<core:Item key="{AuthLevelsModel>id}" text="{AuthLevelsModel>desc}"/>
+							<layoutData>
+								<l:GridData span="L8 M7 S12"/>
+							</layoutData>
+						</Select>
+						<Text id="costCentresText" text="{i18n>faraForm.aslAuth.costCenters}" class="requiredText">
+							<layoutData>
+								<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</Text>
+						<nuk:MultiComboBox id="aslAuthCostCentersMultiComboBox" items="{CostCentersModel>/costCenters}"
+							selectedKeys="{FaraFormModel>/aslAuth/costCentersKeys}" selectionChange="onElementSelected"
+							enabled="{FaraFormProperties>/canEdit}">
+							<core:Item key="{CostCentersModel>id}" text="{CostCentersModel>desc}"/>
+							<nuk:layoutData>
+								<l:GridData span="L8 M7 S12"/>
+							</nuk:layoutData>
+						</nuk:MultiComboBox>
+						<Text text="{i18n>faraForm.aslAuth.costCentersOtherDeptFlag}" visible="{FaraFormModel>/aslAuth/canSelectCostCenterOtherDept}">
+							<layoutData>
+								<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</Text>
+            			<HBox alignItems="Center" justifyContent="Center">
+                			<RadioButton groupName="CostCentersOtherDept" text="{i18n>faraForm.aslAuth.costCentersOtherDeptYes}"
+                    			selected="{FaraFormModel>/aslAuth/costCenterOtherDeptYesSelected}" select="onCostCenterOtherDeptYesSelected"
+                    			enabled="{FaraFormProperties>/canEdit}"
+                    			visible="{FaraFormModel>/aslAuth/canSelectCostCenterOtherDept}"/>
+                			<RadioButton groupName="CostCentersOtherDept" text="{i18n>faraForm.aslAuth.costCentersOtherDeptNo}"
+                    			selected="{FaraFormModel>/aslAuth/costCenterOtherDeptNoSelected}" select="onAslAuthNoSelected"
+                    			enabled="{FaraFormProperties>/canEdit}"
+                    			visible="{FaraFormModel>/aslAuth/canSelectCostCenterOtherDept}"/>
+                			<layoutData>
+                    			<l:GridData span="L8 M7 S12"/>
+                			</layoutData>
+           	   	   	    </HBox>
+						<Text id="costCentresOtherDeptText" text="{i18n>faraForm.aslAuth.costCentersOtherDept}" class="requiredText"
+							visible="{= ${FaraFormModel>/aslAuth/canSelectCostCenterOtherDept} &amp;&amp; ${FaraFormModel>/aslAuth/costCenterOtherDeptYesSelected} }">
+							<layoutData>
+								<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</Text>
+            <nuk:MultiComboBox 
+              id="aslAuthCostCentersOtherDeptMultiComboBox" 
+              items="{
+                path: 'CostCentersOtherDeptModel>/costCenters',
+                sorter: {
+                  path: 'deptName',
+                  descending: false,
+                  group: true
+                },
+                groupHeaderFactory: '.groupOtherDeptCostCenters'
+              }"
+              selectedKeys="{FaraFormModel>/aslAuth/costCentersOtherDeptKeys}" 
+              selectionChange="onElementSelected"
+							enabled="{FaraFormProperties>/canEdit}"
+              visible="{FaraFormModel>/aslAuth/costCenterOtherDeptYesSelected}">
+							<core:Item key="{CostCentersOtherDeptModel>id}" text="{CostCentersOtherDeptModel>desc}"/>
+							<nuk:layoutData>
+								<l:GridData span="L8 M7 S12"/>
+							</nuk:layoutData>
+						</nuk:MultiComboBox>
+
+						<Text text="{i18n>faraForm.aslAuth.approveDeptFlag}" visible="{FaraFormModel>/aslAuth/canApproveDept}">
+							<layoutData>
+								<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</Text>
+            			<HBox alignItems="Center" justifyContent="Center">
+                			<RadioButton groupName="ApproveEntireDept" text="{i18n>faraForm.aslAuth.approveDeptYes}"
+                    			selected="{FaraFormModel>/aslAuth/approveDeptYesSelected}" select="onAslAuthYesSelected"
+                    			enabled="{FaraFormProperties>/canEdit}"
+                    			visible="{FaraFormModel>/aslAuth/canApproveDept}"/>
+                			<RadioButton groupName="ApproveEntireDept" text="{i18n>faraForm.aslAuth.approveDeptNo}"
+                    			selected="{FaraFormModel>/aslAuth/approveDeptNoSelected}" select="onAslAuthNoSelected"
+                    			enabled="{FaraFormProperties>/canEdit}"
+                    			visible="{FaraFormModel>/aslAuth/canApproveDept}"/>
+                			<layoutData>
+                    			<l:GridData span="L8 M7 S12"/>
+                			</layoutData>
+           	   	   	    </HBox>
+						<Text id="DepartmentText" text="{i18n>faraForm.aslAuth.approveDeptDept}" class="requiredText"
+							visible="{= ${FaraFormModel>/aslAuth/canApproveDept} &amp;&amp; ${FaraFormModel>/aslAuth/approveDeptYesSelected} }">
+							<layoutData>
+								<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</Text>
+						<nuk:MultiComboBox id="aslApproveDeptMultiComboBox" items="{CostCenterDeptsModel>/departments}"
+							selectedKeys="{FaraFormModel>/aslAuth/costCenterDeptKeys}" selectionChange="onElementSelected"
+							enabled="{FaraFormProperties>/canEdit}"
+                    		visible="{FaraFormModel>/aslAuth/approveDeptYesSelected}">
+							<core:Item key="{CostCenterDeptsModel>id}" text="{CostCenterDeptsModel>desc}"/>
+							<nuk:layoutData>
+								<l:GridData span="L8 M7 S12"/>
+							</nuk:layoutData>
+						</nuk:MultiComboBox>
+
+						<Text text="{i18n>faraForm.aslAuth.approveInvoices}">
+							<layoutData>
+								<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</Text>
+
+                        <HBox alignItems="Center" justifyContent="Center">
+                            <RadioButton groupName="ApproveInvoices" text="{i18n>faraForm.aslAuth.approveInvoicesyes}"
+                                selected="{FaraFormModel>/aslAuth/invoicesYesSelected}" select="onAslAuthYesSelected"
+                                enabled="{FaraFormProperties>/canEdit}"/>
+                            <RadioButton groupName="ApproveInvoices" text="{i18n>faraForm.aslAuth.approveInvoicesno}"
+                                selected="{FaraFormModel>/aslAuth/invoicesNoSelected}" select="onAslAuthNoSelected"
+                                enabled="{FaraFormProperties>/canEdit}"/>
+                            <layoutData>
+                                <l:GridData span="L8 M7 S12"/>
+                            </layoutData>
+                       </HBox>
+
+                        <!--
+						<CheckBox text="{i18n>faraForm.aslAuth.approveInvoicesyes}" selected="{FaraFormModel>/aslAuth/invoicesYesSelected}"
+							select="onAslAuthYesSelected" enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L8 M7 S12"/>
+							</layoutData>
+                        </CheckBox>
+                        -->
+						<Text id="codiingGroupsText" text="{i18n>faraForm.aslAuth.codiingGroups}" visible="{FaraFormModel>/aslAuth/invoicesYesSelected}">
+							<layoutData>
+								<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</Text>
+						<nuk:MultiComboBox id="aslAuthCodiingGroupsMultiComboBox" items="{CodingGroupsModel>/codingGroups}"
+							selectedKeys="{FaraFormModel>/aslAuth/approverCodingGroupsKeys}" visible="{FaraFormModel>/aslAuth/invoicesYesSelected}"
+							enabled="{FaraFormProperties>/canEdit}">
+							<core:Item key="{CodingGroupsModel>id}" text="{CodingGroupsModel>desc}"/>
+							<nuk:layoutData>
+								<l:GridData span="L8 M7 S12"/>
+							</nuk:layoutData>
+						</nuk:MultiComboBox>
+
+					</f:content>
+				</f:SimpleForm>
+
+				<!-- Require Access to a specific role or transaction -->
+				<!-- Always shows on the form flow in SAP forms -->
+
+                <!-- Below disabled as done via GRC -->
+                <!--
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraform.requireAccess.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{= ${FaraFormModel>/whoRequiresForm/yourselfSelected} || ${FaraFormModel>/whoRequiresForm/someoneElseSelected}}">
+					<f:content>
+						<HBox alignItems="Center" justifyContent="Center">
+							<RadioButton groupName="RequireAccess" text="{i18n>faraForm.requireAccess.yes}"
+								selected="{FaraFormModel>/requireAccess/yesSelected}" select="onRequireAccessYesSelect"
+								enabled="{FaraFormProperties>/canEdit}"/>
+							<RadioButton groupName="RequireAccess" text="{i18n>faraForm.requireAccess.no}"
+								selected="{FaraFormModel>/requireAccess/noSelected}" select="onRequireAccessNoSelect"
+								enabled="{FaraFormProperties>/canEdit}"/>
+							<layoutData>
+								<l:GridData span="L12 M12 S12"/>
+							</layoutData>
+						</HBox>
+					</f:content>
+				</f:SimpleForm>
+                -->
+
+				<!-- Copy someone's access profile -->
+				<!-- Shown when access it's required to a specific role or transaction -->
+                <!-- Below never shown as done via GRC -->
+
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title=""
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{= ${FaraFormModel>/requireAccess/yesSelected}}">
+					<f:content>
+						<Text text="{i18n>faraForm.typeAccess.headerText}">
+							<layoutData>
+								<l:GridData span="L12 M12 S12"/>
+							</layoutData>
+						</Text>
+						<HBox alignItems="Center" justifyContent="Center">
+							<RadioButton groupName="TypeAccess" text="{i18n>faraForm.typeAccess.yes}"
+								selected="{FaraFormModel>/typeAccess/yesSelected}" select="onCopyYesSelect"
+								enabled="{FaraFormProperties>/canEdit}"/>
+							<RadioButton groupName="TypeAccess" text="{i18n>faraForm.typeAccess.no}"
+								selected="{FaraFormModel>/typeAccess/noSelected}" select="onCopyNoSelect"
+								enabled="{FaraFormProperties>/canEdit}"/>
+							<layoutData>
+								<l:GridData span="L12 M12 S12"/>
+							</layoutData>
+						</HBox>
+
+						<!-- Yes selected: Shows a searchform to look for the user to copy. -->
+						<!-- After selecting an user, his/her data will be shown -->
+
+						<Label text="{i18n>faraForm.typeAccess.userAccountToCopy}" visible="{FaraFormModel>/typeAccess/yesSelected}"/>
+						<SearchField
+							id="typeAccessSearchAccount"
+							value="{FaraFormModel>/typeAccess/searchAccountToCopy}"
+							search="onSearchAccountToCopy"
+							liveChange="onUserSearchLiveChange"
+							suggest="onSearchUsersSuggestSearch"
+							visible="{FaraFormModel>/typeAccess/yesSelected}"
+							suggestionItems="{UsersSearchModel>/users}"
+							showSearchButton="{FaraFormModel>/typeAccess/magnifier}"
+							enabled="{FaraFormProperties>/canEdit}">
+							<suggestionItems>
+								<SuggestionItem text="{UsersSearchModel>FullName}" description="{UsersSearchModel>UserName} - {UsersSearchModel>JobTitle}" key="{UsersSearchModel>UserName}"/>
+							</suggestionItems>
+						</SearchField>
+						<Label text="{i18n>faraForm.typeAccess.jobTitle}" visible="{= ${FaraFormProperties>/typeOfAccessSearchedValuesVisible} &amp;&amp; ${FaraFormModel>/typeAccess/yesSelected}}"/>
+						<Input value="{FaraFormModel>/typeAccess/jobTitle}" enabled="false" visible="{= ${FaraFormProperties>/typeOfAccessSearchedValuesVisible} &amp;&amp; ${FaraFormModel>/typeAccess/yesSelected}}"/>
+						<Label text="{i18n>faraForm.typeAccess.department}" visible="{= ${FaraFormProperties>/typeOfAccessSearchedValuesVisible} &amp;&amp; ${FaraFormModel>/typeAccess/yesSelected}}"/>
+						<Input value="{FaraFormModel>/typeAccess/department}" enabled="false" visible="{= ${FaraFormProperties>/typeOfAccessSearchedValuesVisible} &amp;&amp; ${FaraFormModel>/typeAccess/yesSelected}}"/>
+						<Label text="{i18n>faraForm.typeAccess.manager}" visible="{= ${FaraFormProperties>/typeOfAccessSearchedValuesVisible} &amp;&amp; ${FaraFormModel>/typeAccess/yesSelected}}"/>
+						<Input value="{FaraFormModel>/typeAccess/manager}" enabled="false" visible="{= ${FaraFormProperties>/typeOfAccessSearchedValuesVisible} &amp;&amp; ${FaraFormModel>/typeAccess/yesSelected}}"/>
+
+						<!-- No selected: Two new options: Add a new transaction to an existing role and Add a new role to an existing user -->
+
+						<RadioButton
+							groupName="AreaRequestAddNew"
+							text="{i18n>faraForm.typeAccess.addNewTransaction}"
+							selected="{FaraFormModel>/typeAccess/addNewTransactionSelected}"
+							visible="{= ${FaraFormModel>/typeAccess/noSelected} &amp;&amp; ${FaraFormModel>/areaRequestForm/sapSelected}}"
+							select="onAddNewTransactionSelect"
+							enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</RadioButton>
+						<RadioButton
+							groupName="AreaRequestAddNew"
+							text="{i18n>faraForm.typeAccess.addNewRole}"
+							selected="{FaraFormModel>/typeAccess/addNewRoleSelected}"
+							visible="{= ${FaraFormModel>/typeAccess/noSelected} &amp;&amp; ${FaraFormModel>/areaRequestForm/sapSelected}}"
+							select="onAddNewRoleSelect"
+							enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+							</layoutData>
+						</RadioButton>
+					</f:content>
+				</f:SimpleForm>
+
+				<!-- Add a new transaction to an existing role -->
+
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.newTransaction.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{FaraFormModel>/typeAccess/addNewTransactionSelected}">
+					<f:content>
+						<Label text="{i18n>faraForm.newTransaction.proposedTransaction}"/>
+						<MultiInput id="transactionsMultiInput" showValueHelp="true"
+							valueHelpOnly="true" valueHelpRequest="onValueHelpTransactions" enableMultiLineMode="true"
+							enabled="{FaraFormProperties>/canEdit}"/>
+
+						<Label text="{i18n>faraForm.newTransaction.existingRole}"/>
+						<nuk:MultiComboBox id="existingRolesMultiComboBox" items="{ExistingRolesModel>/roles}"
+							selectedKeys="{FaraFormModel>/newTransaction/rolesKeys}" enabled="{FaraFormProperties>/canEdit}">
+							<core:Item key="{ExistingRolesModel>id}" text="{ExistingRolesModel>desc}"/>
+						</nuk:MultiComboBox>
+					</f:content>
+				</f:SimpleForm>
+
+				<!-- Add a new role to an existing user -->
+
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.newRole.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{FaraFormModel>/typeAccess/addNewRoleSelected}">
+					<f:content>
+						<Label text="{i18n>faraForm.newRole.roleDescription}"/>
+						<nuk:MultiComboBox id="newRoleRolesMultiComboBox" items="{ExistingRolesModel>/roles}"
+							selectedKeys="{FaraFormModel>/newRole/rolesKeys}" enabled="{FaraFormProperties>/canEdit}">
+							<core:Item key="{ExistingRolesModel>id}" text="{ExistingRolesModel>desc}"/>
+						</nuk:MultiComboBox>
+					</f:content>
+				</f:SimpleForm>
+
+				<!-- Do you require financial systems access or approval? -->
+				<!-- Always shown on the form flow when SAP - Yourself or SAP - Someone else -->
+          
+        <!--
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.otherFinancialSystems.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{= ${FaraFormModel>/whoRequiresForm/yourselfSelected} || ${FaraFormModel>/whoRequiresForm/someoneElseSelected}}">
+					<f:content>
+						<HBox alignItems="Center" justifyContent="Center">
+							<RadioButton groupName="FinancialSystems" text="{i18n>faraForm.otherFinancialSystems.yes}"
+								selected="{FaraFormModel>/otherFinancialSystems/yesSelected}" select="onOtherFinancialSystemsYesSelect"
+								enabled="{FaraFormProperties>/canEdit}"/>
+							<RadioButton groupName="FinancialSystems" text="{i18n>faraForm.otherFinancialSystems.no}"
+								selected="{FaraFormModel>/otherFinancialSystems/noSelected}" select="onOtherFinancialSystemsNoSelect"
+								enabled="{FaraFormProperties>/canEdit}"/>
+							<layoutData>
+								<l:GridData span="L12 M12 S12"/>
+							</layoutData>
+						</HBox>
+					</f:content>
+				  </f:SimpleForm>
+				-->
+
+				<!-- Financial systems access or approval: Invoice Coding Group -->
+
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.codingGroup.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{FaraFormModel>/otherFinancialSystems/yesSelected}">
+					<f:content>
+						<CheckBox text="{i18n>faraForm.codingGroup.yes}" selected="{FaraFormModel>/codingGroup/yesSelected}"
+							select="onInvoicesCodingGroupYes" enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L8 M7 S12"/>
+							</layoutData>
+						</CheckBox>
+						<VBox visible="{FaraFormModel>/codingGroup/yesSelected}">
+							<Text id="codiingGroupsCoderText" text="{i18n>faraForm.codingGroup.coderCodiingGroups}">
+							</Text>
+							<nuk:MultiComboBox id="aslAuthCoderCodiingGroupsMultiComboBox" items="{CodingGroupsModel>/codingGroups}"
+								selectedKeys="{FaraFormModel>/codingGroup/coderCodingGroupsKeys}" enabled="{FaraFormProperties>/canEdit}">
+								<core:Item key="{CodingGroupsModel>id}" text="{CodingGroupsModel>desc}"/>
+							</nuk:MultiComboBox>
+
+							<layoutData>
+								<l:GridData span="L8 M10 S12"/>
+							</layoutData>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+
+				<!-- Financial systems access or approval: Expences -->
+                <!-- 
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.expences.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{= ${FaraFormModel>/otherFinancialSystems/yesSelected} &amp;&amp; ${FaraFormModel>/yourDetailsForm/isEditorial}}">
+					<f:content>
+						<CheckBox text="{i18n>faraForm.expences.yes}" selected="{FaraFormModel>/expences/yesSelected}"
+							select="onExpencesYes" enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L4 M2 S12"/>
+							</layoutData>
+						</CheckBox>
+						<VBox visible="{FaraFormModel>/expences/yesSelected}">
+							<HBox>
+								<VBox alignItems="Start" justifyContent="Start">
+									<RadioButton groupName="Expences" text="{i18n>faraForm.expences.approver}"
+										selected="{FaraFormModel>/expences/approverSelected}" select="onExpencesApproverSelect"
+										enabled="{FaraFormProperties>/canEdit}"/>
+									<RadioButton groupName="Expences" text="{i18n>faraForm.expences.validator}"
+										selected="{FaraFormModel>/expences/validatorSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+								</VBox>
+								<ToolbarSpacer width="3rem"/>
+								<Text text="{i18n>faraForm.expences.description}"/>
+							</HBox>
+							<Text text="{i18n>faraForm.expences.costCentersTitle}"/>
+							<nuk:MultiComboBox id="expencesCostCentersMultiComboBox" items="{CostCentersModel>/costCenters}"
+								selectedKeys="{FaraFormModel>/expences/costCentersKeys}" selectionChange="onElementSelected"
+								enabled="{FaraFormProperties>/canEdit}">
+								<core:Item key="{CostCentersModel>id}" text="{CostCentersModel>desc}"/>
+							</nuk:MultiComboBox>
+
+							<layoutData>
+								<l:GridData span="L8 M10 S12"/>
+							</layoutData>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+                -->
+
+				<!-- Financial systems access or approval: SRM -->
+                <!-- 
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.srm.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{FaraFormModel>/otherFinancialSystems/yesSelected}">
+					<f:content>
+						<CheckBox text="{i18n>faraForm.srm.yes}" selected="{FaraFormModel>/srm/yesSelected}"
+							select="onSRMYes" enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L4 M2 S12"/>
+							</layoutData>
+						</CheckBox>
+						<HBox visible="{FaraFormModel>/srm/yesSelected}">
+							<VBox alignItems="Start" justifyContent="Start">
+								<RadioButton groupName="SRM" text="{i18n>faraForm.srm.buyer}" selected="{FaraFormModel>/srm/buyerSelected}"
+									enabled="{FaraFormProperties>/canEdit}"/>
+								<RadioButton groupName="SRM" text="{i18n>faraForm.srm.approver}" selected="{FaraFormModel>/srm/approverSelected}"
+									enabled="{FaraFormProperties>/canEdit}"/>
+							</VBox>
+							<ToolbarSpacer width="3rem"/>
+							<Text text="{i18n>faraForm.srm.description}"/>
+
+							<layoutData>
+								<l:GridData span="L8 M10 S12"/>
+							</layoutData>
+						</HBox>
+					</f:content>
+				</f:SimpleForm>
+                -->
+
+				<!-- Financial systems access or approval: Stock Approval -->
+
+                <!-- Below disabled as done via GRC -->
+                <!-- 
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.stockApproval.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{FaraFormModel>/otherFinancialSystems/yesSelected}">
+					<f:content>
+						<CheckBox text="{i18n>faraForm.stockApproval.yes}" selected="{FaraFormModel>/stockApproval/yesSelected}"
+							select="onStockApprovalYes" enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L4 M2 S12"/>
+							</layoutData>
+						</CheckBox>
+						<HBox visible="{FaraFormModel>/stockApproval/yesSelected}">
+							<VBox alignItems="Start" justifyContent="Start">
+								<RadioButton groupName="StockApproval" text="{i18n>faraForm.stockApproval.productionPucharse}"
+									selected="{FaraFormModel>/stockApproval/productionPucharseSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+								<RadioButton groupName="StockApproval" text="{i18n>faraForm.stockApproval.productionMRP}"
+									selected="{FaraFormModel>/stockApproval/productionMRPSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+							</VBox>
+
+							<layoutData>
+								<l:GridData span="L8 M10 S12"/>
+							</layoutData>
+						</HBox>
+					</f:content>
+				</f:SimpleForm>
+                -->
+
+				<!-- Financial systems access or approval: ECS -->
+
+                <!-- Below disabled pending other changes -->
+                <!-- 
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.ecs.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{FaraFormModel>/otherFinancialSystems/yesSelected}">
+					<f:content>
+						<CheckBox text="{i18n>faraForm.ecs.yes}" selected="{FaraFormModel>/ecs/yesSelected}" select="onECSYes">
+							<layoutData>
+								<l:GridData span="L4 M2 S12"/>
+							</layoutData>
+						</CheckBox>
+
+						<VBox visible="{FaraFormModel>/ecs/yesSelected}">
+							<HBox>
+								<VBox alignItems="Start" justifyContent="Start">
+									<RadioButton groupName="ECS" text="{i18n>faraForm.ecs.comissioningEditor}"
+										selected="{FaraFormModel>/ecs/comissioningEditorSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+									<RadioButton groupName="ECS" text="{i18n>faraForm.ecs.deskAdministrator}"
+										selected="{FaraFormModel>/ecs/deskAdministratorSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+									<RadioButton groupName="ECS" text="{i18n>faraForm.ecs.deskHeadApprover}"
+										selected="{FaraFormModel>/ecs/deskHeadApproverSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+									<RadioButton groupName="ECS" text="{i18n>faraForm.ecs.contributionsCoordinator}"
+										selected="{FaraFormModel>/ecs/contributionsCoordinatorSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+									<RadioButton groupName="ECS" text="{i18n>faraForm.ecs.managingEditor}"
+										selected="{FaraFormModel>/ecs/managingEditorSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+
+									<Text text="{i18n>faraForm.ecs.publication}"/>
+
+									<HBox>
+										<RadioButtonGroup id="PublicationsRadioButtonGroup" columns="3">
+											<buttons>
+												<RadioButton text="{i18n>faraForm.ecs.theTimes}" custom:pubId="TIM" select="onPublicationSelected"
+													enabled="{FaraFormProperties>/canEdit}"/>
+												<RadioButton text="{i18n>faraForm.ecs.theSundayTimes}" custom:pubId="STI" select="onPublicationSelected"
+													enabled="{FaraFormProperties>/canEdit}"/>
+												<RadioButton text="{i18n>faraForm.ecs.theSun}" custom:pubId="SUN" select="onPublicationSelected"
+													enabled="{FaraFormProperties>/canEdit}"/>
+											</buttons>
+										</RadioButtonGroup>
+									</HBox>
+								</VBox>
+							</HBox>
+							<Text class="requiredText" text="{i18n>faraForm.ecs.enterCostCenters}"/>
+
+							<nuk:MultiComboBox id="ecsCostCentersMultiComboBox" items="{PublicationCostCentersModel>/costCenters}"
+								selectedKeys="{FaraFormModel>/ecs/costCentersKeys}" selectionChange="onElementSelected"
+								enabled="{FaraFormProperties>/canEdit}">
+								<core:Item key="{PublicationCostCentersModel>id}" text="{PublicationCostCentersModel>desc}"/>
+							</nuk:MultiComboBox>
+
+							<Text text="{i18n>faraForm.ecs.costCentersDescription}"/>
+
+							<layoutData>
+								<l:GridData span="L8 M10 S12"/>
+							</layoutData>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+                -->
+
+				<!-- Financial systems access or approval: CMS -->
+                <!-- Below disabled pending other changes -->
+                <!-- 
+				<f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.cms.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{FaraFormModel>/otherFinancialSystems/yesSelected}">
+					<f:content>
+						<CheckBox text="{i18n>faraForm.cms.yes}" selected="{FaraFormModel>/cms/yesSelected}" select="onCMSYes"
+							enabled="{FaraFormProperties>/canEdit}">
+							<layoutData>
+								<l:GridData span="L4 M2 S12"/>
+							</layoutData>
+						</CheckBox>
+
+						<VBox visible="{FaraFormModel>/cms/yesSelected}">
+							<HBox>
+								<VBox alignItems="Start" justifyContent="Start">
+									<RadioButton groupName="CMS" text="{i18n>faraForm.cms.deskHead}"
+										selected="{FaraFormModel>/cms/deskHeadSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+									<RadioButton groupName="CMS" text="{i18n>faraForm.cms.regionalApprover}"
+										selected="{FaraFormModel>/cms/regionalApproverSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+									<RadioButton groupName="CMS" text="{i18n>faraForm.cms.managingEditor}"
+										selected="{FaraFormModel>/cms/managingEditorSelected}" enabled="{FaraFormProperties>/canEdit}"/>
+								</VBox>
+							</HBox>
+							<Text class="requiredText" text="{i18n>faraForm.cms.enterCostCenters}"/>
+
+							<Select id="DepartmentSelect" selectedKey="{FaraFormModel>/cms/departmentSelected}"
+								items="{DepartmentsModel>/departments}" change="onDepartmentSelected"
+								enabled="{FaraFormProperties>/canEdit}">
+								<core:Item key="{DepartmentsModel>id}" text="{DepartmentsModel>desc}"/>
+							</Select>
+
+							<nuk:MultiComboBox id="cmsCostCentersMultiComboBox" items="{DepartmentCostCentersModel>/costCenters}"
+								selectedKeys="{FaraFormModel>/cms/costCentersKeys}" selectionChange="onElementSelected"
+								enabled="{FaraFormProperties>/canEdit}">
+								<core:Item key="{DepartmentCostCentersModel>id}" text="{DepartmentCostCentersModel>desc}"/>
+							</nuk:MultiComboBox>
+
+							<Text text="{i18n>faraForm.cms.costCentersDescription}"/>
+
+							<layoutData>
+								<l:GridData span="L8 M10 S12"/>
+							</layoutData>
+						</VBox>
+					</f:content>
+				</f:SimpleForm>
+                -->
+
+				<!-- History table -->
+				<!-- <f:SimpleForm
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>faraForm.ah.title}"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="0"
+					emptySpanM="0"
+					columnsL="1"
+					columnsM="1"
+					backgroundDesign="Solid"
+					visible="{= !${FaraFormProperties>/canEdit}}"> -->
+					<f:SimpleForm
+						maxContainerCols="2"
+						editable="true"
+						layout="ResponsiveGridLayout"
+						title="{i18n>faraForm.ah.title}"
+						labelSpanL="3"
+						labelSpanM="3"
+						emptySpanL="0"
+						emptySpanM="0"
+						columnsL="1"
+						columnsM="1"
+						backgroundDesign="Solid"
+                        visible="{= !${FaraFormProperties>/creation} &amp;&amp; !${FaraFormProperties>/resubmission}}">
+					<f:content>
+						<Table inset="false"
+							items="{ApprovalHistoryModel>/approvalHistory/}"
+							noDataText="{i18n>faraForm.ah.noDataText}">
+							<headerToolbar>
+								<Toolbar>
+									<Title text="{ApprovalHistoryModel>/subtitle}" level="H6"/>
+									<ToolbarSpacer></ToolbarSpacer>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column id="level" width="6rem">
+									<Text text="{i18n>faraForm.ah.level}" />
+								</Column>
+								<Column id="status">
+									<Text text="{i18n>faraForm.ah.status}" />
+								</Column>
+								<Column id="personApproved" width="13rem">
+									<Text text="{i18n>faraForm.ah.personApproved}" />
+								</Column>
+								<Column id="date" width="11rem">
+									<Text text="{i18n>faraForm.ah.date}" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{ApprovalHistoryModel>level}"/>
+										<Text text="{ApprovalHistoryModel>status}"/>
+										<Text text="{ApprovalHistoryModel>personApproved}"/>
+										<Text text="{ApprovalHistoryModel>date}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+                        </Table>
+						<Label 
+							text="{i18n>faraForm.ah.comments}"
+                        	visible="{= !! ${ApprovalHistoryModel>/rejectionReason} }"/> 
+                        <TextArea 
+                        	value="{ApprovalHistoryModel>/rejectionReason}" 
+                        	placeholder="{i18n>faraForm.ah.comments.placeHolder}"
+                        	editable="false" 
+                        	enabled="false"
+                        	visible="{= !! ${ApprovalHistoryModel>/rejectionReason} }"/> 
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+
+		<!-- Submit button on footer -->
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button type="Accept" text="{i18n>faraForm.approve}" visible="{ parts: ['FaraFormModel>/workItemId'], formatter: '.formatter.approveRejectVisible' }" press="onApprove"/>
+				</contentLeft>
+				<contentMiddle>
+					<Button text="{i18n>faraForm.cancel}"
+                        visible="{= ${FaraFormProperties>/cancelVisible} &amp;&amp; ${FaraFormProperties>/canEdit}}" press="onCancel"/>
+					<Button text="{ parts: ['FaraFormModel>/status'], formatter: '.formatter.submitButtonText' }"
+                        visible="{= ${FaraFormProperties>/submitVisible} &amp;&amp; ${FaraFormProperties>/canEdit}}" press="onSubmit"/>
+                    <Button icon="sap-icon://redo" text="{i18n>faraForm.resubmit}"
+                        visible="{FaraFormProperties>/canResubmit}" press="onResubmit"/>
+				</contentMiddle>
+				<contentRight>
+					<Button type="Reject" text="{i18n>faraForm.reject}" visible="{ parts: ['FaraFormModel>/workItemId'], formatter: '.formatter.approveRejectVisible' }" press="onReject"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

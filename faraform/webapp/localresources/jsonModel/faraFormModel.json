@@ -1,0 +1,120 @@
+{
+  "areaRequestForm": {
+    "approvedSignatureSelected": false,
+    "sapSelected": false
+  },
+  "whoRequiresForm": {
+    "yourselfSelected": false,
+    "someoneElseSelected": false
+  },
+  "yourDetailsForm": {
+    "name": "",
+    "jobTitle": "",
+    "department": "",
+    "homeCostCenter": "",
+    "homeCostCenterName": "",
+    "isEditorial": "",
+    "manager": "",
+    "phone": "",
+    "mail": ""
+  },
+  "requireAccess":{
+    "yesSelected": false,
+    "noSelected": false
+  },
+  "typeAccess": {
+    "userId": "",
+    "yesSelected": false,
+    "noSelected": false,
+    "searchAccountToCopy": "",
+    "jobTitle": "",
+    "department": "",
+    "manager": "",
+    "addNewTransactionSelected": false,
+    "magnifier": true,
+    "addNewRoleSelected": false,
+    "roles": ""
+  },
+  "newTransaction": {
+    "costCentersKeys": [],
+    "rolesKeys": []
+  },
+  "newRole": {
+    "rolesKeys": []
+  },
+  "creatingAccess": {
+    "userId": "",
+    "name": "",
+    "jobTitle": "",
+    "department": "",
+    "homeCostCenter": "",
+    "homeCostCenterName": "",
+    "manager": "",
+    "phone": "",
+    "mail": "",
+    "magnifier": true
+  },
+  "otherFinancialSystems": {
+    "yesSelected": false,
+    "noSelected": false
+  },
+  "codingGroup": {
+    "yesSelected": false,
+    "coderCodingGroupsKeys": []
+  },
+  "expences": {
+    "yesSelected": false,
+    "approverSelected": false,
+    "validatorSelected": false,
+    "costCentersKeys": []
+  },
+  "srm": {
+    "yesSelected": false,
+    "buyerSelected": false,
+    "approverSelected": false
+  },
+  "stockApproval": {
+    "yesSelected": false,
+    "productionPucharseSelected": false,
+    "productionMRPSelected": false
+  },
+  "ecs": {
+    "yesSelected": false,
+    "comissioningEditorSelected": false,
+    "deskAdministratorSelected": false,
+    "deskHeadApproverSelected": false,
+    "contributionsCoordinatorSelected": false,
+    "managingEditorSelected": false,
+    "theTimesSelected": false,
+    "theSundayTimesSelected": false,
+    "theSunSelected": false,
+    "costCentersKeys": []
+  },
+  "cms": {
+    "yesSelected": false,
+    "deskHeadSelected": false,
+    "regionalApproverSelected": false,
+    "managingEditorSelected": false,
+    "departmentSelected": "",
+    "costCentersKeys": []
+  },
+  "aslAuth": {
+    "canSelectCostCenterOtherDept": false,
+    "costCenterOtherDeptYesSelected": false,
+    "costCenterOtherDeptNoSelected": false,
+    "canApproveDept": false,
+    "approveDeptYesSelected": false,
+    "approveDeptNoSelected": false,
+    "invoicesYesSelected": false,
+    "invoicesNoSelected": false,
+    "coderYesSelected": false,
+    "levelSelected": "",
+    "costCentersKeys": [],
+    "approverCodingGroupsKeys": [],
+    "coderCodingGroupsKeys": []
+  },
+  "workItemId": "",
+  "status": null,
+  "createdBy": "",
+  "createdOn": null
+}

@@ -1,0 +1,51 @@
+{
+    "mode": "relative",
+    "https": "false",
+    "liveSearchInterval": "0.75",
+    "oDataProxy": false,
+    "oDataProxyConf": {
+      "url": "proxy/https/vds4ci.dni.dev.internal:8001/sap/opu/odata/sap/zod_fara_forms_srv",
+      "user": "",
+      "password": ""
+    },
+    "mockServer": false,
+    "mockConfig": {
+      "baseURL": "localresources/odataModel/",
+      "metadata": "metadata.xml",
+      "autoRespond": true,
+      "autoRespondAfter": 5000,
+      "generateMissingMockData": true
+    },
+    "timeout": {
+        "short": "10000",
+        "medium": "50000",
+        "long": "100000"
+    },
+    "urls": {
+       "path": "/",
+        "relpath": "/fara_api"
+         
+     },
+    "environments": {
+        "local": {
+            "port": "",
+            "host": ""
+        },
+        "dev": {
+            "port": "",
+            "host": ""
+        },
+        "pre": {
+            "port": "",
+            "host": ""
+        },
+        "test": {
+            "port": "",
+            "host": ""
+        },
+        "pro": {
+            "port": "",
+            "host": ""
+        }
+    }
+}

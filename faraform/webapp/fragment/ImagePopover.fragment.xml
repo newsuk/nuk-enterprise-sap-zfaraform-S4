@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover
+		title="{i18n>faraForm.aslAuth.authLimitsTitle}"
+		placement="VerticalPreferredTop" >
+		<beginButton>
+			<Button text="{i18n>faraForm.aslAuth.close}" press="onCloseImagePopoverPress" />
+		</beginButton>
+		<content>
+			<Image src="{FaraFormProperties>/authLimitsURL}" />
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

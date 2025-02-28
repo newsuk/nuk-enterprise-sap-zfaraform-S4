@@ -1,0 +1,25 @@
+specVersion: "3.1"
+metadata:
+  name: news.uk.fara
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: BAS_to_DS4
+          url: http://newsdevbas.dni.dev.internal:44301
+          client: "100"
+          scp: true
+        app:
+          name: ZUI_FARA_FORM
+          description: FARA Form
+          package: ZFARA
+          transport: DS4K903644
+        exclude:
+          - /test/

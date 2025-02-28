@@ -1,0 +1,38 @@
+[
+     {
+       "CostCenterNumber" : "200",
+       "CostCenterName" : "200 Name"
+     },
+     {
+       "CostCenterNumber" : "300",
+       "CostCenterName" : "300 Name"
+     },
+     {
+       "CostCenterNumber" : "400",
+       "CostCenterName" : "400 Name"
+     },
+     {
+       "CostCenterNumber" : "500",
+       "CostCenterName" : "500 Name"
+     },
+     {
+       "CostCenterNumber" : "600",
+       "CostCenterName" : "600 Name"
+     },
+     {
+       "CostCenterNumber" : "700",
+       "CostCenterName" : "700 Name"
+     },
+     {
+       "CostCenterNumber" : "800",
+       "CostCenterName" : "800 Name"
+     },
+     {
+       "CostCenterNumber" : "900",
+       "CostCenterName" : "900 Name"
+     },
+     {
+       "CostCenterNumber" : "901",
+       "CostCenterName" : "901 Name"
+     }
+]

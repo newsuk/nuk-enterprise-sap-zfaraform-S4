@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="{i18n>faraForm.typeAccess.addNewTransactionTitle}"
+    liveChange="onTransactionLiveChange"
+    search="onTransactionSearch"
+		confirm="onTransactionsDialogConfirm"
+		close="onTransactionsDialogClose"
+		items="{TransactionsModel>/transactions}"
+    multiSelect="true"
+    class="invisibleSelectedHeader" >
+		<StandardListItem
+			title="{TransactionsModel>TCode}"
+			description="{TransactionsModel>TCodeDescription}"
+      selected="{TransactionsModel>Selected}"
+			type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,60 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="news.uk.fara.controller.Master" displayBlock="true">
+		<Page title="{ parts: ['i18n>master.title', 'FormsModel>/formsTotal'], formatter: 'jQuery.sap.formatMessage' }" backgroundDesign="Solid">
+			<customHeader>
+				<Toolbar>
+					<Button icon="sap-icon://nav-back" press="onNavLaunchpad"/>
+					<ToolbarSpacer/>
+					<Title text="{ parts: ['i18n>master.title', 'FormsModel>/formsTotal'], formatter: 'jQuery.sap.formatMessage' }" />
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://action-settings" visible="{FaraFormProperties>/myForms}"
+						press="onPressMasterFilter"/>
+					<Button enabled="false" visible="{= !${FaraFormProperties>/myForms}}"/>
+				</Toolbar>
+			</customHeader>
+			<subHeader>
+				<Toolbar>
+					<SearchField
+						liveChange="onSearch"
+						width="100%" />
+				</Toolbar>
+			</subHeader>
+
+			<content>
+				<List id="formsList"
+					items="{FormsModel>/forms}"
+					mode="SingleSelectLeft"
+					select="onFormSelected"
+					growing="true"
+					growingScrollToLoad="true"
+					showNoData="false"
+					showSeparators="None"
+					rememberSelections="false">
+					<infoToolbar>
+					</infoToolbar>
+					<!-- <ObjectListItem title="{FormsModel>FormID}"> -->
+					<ObjectListItem title="{FormsModel>FormTypeList}">
+						<firstStatus>
+							<!-- <ObjectStatus text="{FormsModel>UserIdReqAccess}"/> -->
+							<ObjectStatus text="{FormsModel>UserIdReqAccessName}"/>
+						</firstStatus>
+						<attributes>
+							<ObjectAttribute class="wrapObjectAttributeText" text="{ parts: ['FormsModel>Status'], formatter: '.formatter.formatStatus' }"/>
+							<!-- <ObjectAttribute text="{FormsModel>UserIdReqAccess}"/> -->
+							<ObjectAttribute text="{ parts: ['FormsModel>LastChangedOn'], formatter: '.formatter.formatDate' }"/>
+						</attributes>
+					</ObjectListItem>
+				</List>
+			</content>
+
+			<footer>
+				<Bar>
+					<contentMiddle>
+							<Button icon="sap-icon://create-form"
+								visible="{FaraFormProperties>/myForms}"
+								text="{i18n>master.newForm}"
+								press="onNewFormPress" />
+					</contentMiddle>
+				</Bar>
+			</footer>
+		</Page>
+</mvc:View>

@@ -1,0 +1,7 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="news.uk.fara.controller.BaseController" displayBlock="true">
+	<MessagePage
+		title="{i18n>notFound.title}"
+		text="{i18n>notFound.text}"
+		icon="sap-icon://error"
+		description=""/>
+</mvc:View>

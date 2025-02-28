@@ -1,0 +1,12 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="news.uk.fara.controller.EmptyMaster" displayBlock="true">
+		<Page backgroundDesign="Solid">
+			<subHeader>
+			</subHeader>
+
+			<content>
+			</content>
+
+			<footer>
+			</footer>
+		</Page>
+</mvc:View>

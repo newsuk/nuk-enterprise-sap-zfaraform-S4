@@ -1,0 +1,8 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="news.uk.fara.controller.SelectForm" displayBlock="true">
+	<MessagePage
+		id="SelectForm"
+		title="{i18n>selectForm.title}"
+		text="{i18n>selectForm.text}"
+		icon="sap-icon://list"
+		description=""/>
+</mvc:View>

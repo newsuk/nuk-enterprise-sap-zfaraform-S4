@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:nuk="news.uk.fara.localresources.controls">
+	<Dialog
+		title="{i18n>faraForm.reject.reasonForRejectionTitle}"
+		type="Standard"
+		contentWidth="30rem">
+
+		<f:SimpleForm
+			maxContainerCols="2"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title=""
+			labelSpanL="4"
+			labelSpanM="5"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="1"
+			columnsM="1"
+			backgroundDesign="Solid">
+			<f:content>
+				<Text text="{i18n>faraForm.reject.reasonForRejection}">
+					<layoutData>
+						<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+					</layoutData>
+				</Text>
+				<TextArea value="{ReasonRejectionDialogModel>/text}" rows="3">
+					<layoutData>
+						<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+					</layoutData>
+				</TextArea>
+			</f:content>
+		</f:SimpleForm>
+
+		<endButton><Button text="{i18n>faraForm.reject.continue}" press="onReasonRejectionContinue"/></endButton>
+	</Dialog>
+</core:FragmentDefinition>

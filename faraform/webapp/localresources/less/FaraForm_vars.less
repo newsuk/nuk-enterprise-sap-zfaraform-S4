@@ -1,0 +1,80 @@
+// main: styles.less
+
+// *----------------------------------------------
+// *----- Vars
+// *----------------------------------------------
+
+@faraform-app-header-backgroundColor: white;
+
+@faraForm-app-title-size: 32px;
+@faraForm-app-title-marginTop: 1rem;
+@faraForm-app-title-marginBottom: 1rem;
+
+@faraForm-app-subtitle-size: 18px;
+@faraForm-app-subtitle-marginLeft: 0.5rem;
+@faraForm-app-subtitle-marginRight: 0.5rem;
+
+@faraForm-app-textHeader-marginLeft: 0.5rem;
+@faraForm-app-textHeader-marginRight: 0.5rem;
+
+@faraform-app-required-paddingRight: 0.65rem;
+
+@faraform-app-requiredMark-color: #c14646;
+@faraform-app-requiredMark-font-size: 1.25rem;
+@faraform-app-requiredMark-topForLabel: 0.25rem;
+@faraform-app-requiredMark-leftForLabel: 0rem;
+@faraform-app-requiredMark-topForText: 0.1rem;
+@faraform-app-requiredMark-leftForText: 0.1rem;
+
+@faraform-app-invisible: none;
+
+// *----------------------------------------------
+// *----- Mixins
+// *----------------------------------------------
+
+.faraform-app-header() {
+  background-color: @faraform-app-header-backgroundColor;
+}
+
+.faraForm-app-title() {
+  font-size: @faraForm-app-title-size;
+  margin-top: @faraForm-app-title-marginTop;
+  margin-bottom: @faraForm-app-title-marginBottom;
+}
+
+.faraForm-app-subtitle() {
+  font-size: @faraForm-app-subtitle-size;
+  margin-left: @faraForm-app-subtitle-marginLeft;
+  margin-right: @faraForm-app-subtitle-marginRight;
+}
+
+.faraForm-app-textHeader() {
+  margin-left: @faraForm-app-textHeader-marginLeft;
+  margin-right: @faraForm-app-textHeader-marginRight;
+}
+
+.faraForm-app-requiredMark(@topValue, @leftValue) {
+  content: "*";
+  color: @faraform-app-requiredMark-color;
+  font-size: @faraform-app-requiredMark-font-size;
+  font-weight: bold;
+  line-height: 0;
+  position: relative;
+  top: @topValue;
+  left: @leftValue;
+}
+
+.faraForm-app-required(@topValue, @leftValue) {
+  padding-right: @faraform-app-required-paddingRight;
+  &:before{
+    .faraForm-app-requiredMark(@topValue, @leftValue);
+  }
+}
+
+// .invisible() {
+//   display: @faraform-app-invisible;
+// }
+
+.invisible() {
+  display: @faraform-app-invisible !important;
+}

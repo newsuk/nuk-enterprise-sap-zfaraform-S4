@@ -1,0 +1,30 @@
+[
+     {
+       "PublicationID" : "1",
+       "PublicationName" : "Publication 1 Name"
+     },
+     {
+       "PublicationID" : "2",
+       "PublicationName" : "Publication 2 Name"
+     },
+     {
+       "PublicationID" : "3",
+       "PublicationName" : "Publication 3 Name"
+     },
+     {
+       "PublicationID" : "4",
+       "PublicationName" : "Publication 4 Name"
+     },
+     {
+       "PublicationID" : "5",
+       "PublicationName" : "Publication 5 Name"
+     },
+     {
+       "PublicationID" : "6",
+       "PublicationName" : "Publication 6 Name"
+     },
+     {
+       "PublicationID" : "7",
+       "PublicationName" : "Publication 7 Name"
+     }
+]

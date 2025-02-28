@@ -1,0 +1,46 @@
+specVersion: "3.1"
+metadata:
+  name: news.uk.fara
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+          version: 1.38.59
+        backend:
+          - path: /sap
+            url: http://newsdevbas.dni.dev.internal:44301
+            client: '100'
+            destination: BAS_to_DS4
+            scp: true
+            authenticationType: BasicAuthentication
+          - path: /sap
+            url: http://newsdevbas.dni.dev.internal:44301
+            client: '100'
+            destination: BAS_to_DS4
+            scp: true
+            authenticationType: BasicAuthentication
+          - path: /sap/opu/odata/sap/zod_fara_forms_srv
+            url: http://newsdevbas.dni.dev.internal:44301
+            client: '100'
+            destination: BAS_to_DS4
+            scp: true
+            authenticationType: BasicAuthentication
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: news.uk.fara
+        ui5Theme: sap_fiori_3

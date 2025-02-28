@@ -1,0 +1,34 @@
+[
+     {
+       "RoleName" : "Role 1",
+       "RoleDescription" : "Role 1 Desc"
+     },
+     {
+       "RoleName" : "Role 2",
+       "RoleDescription" : "Role 2 Desc"
+     },
+     {
+       "RoleName" : "Role 3",
+       "RoleDescription" : "Role 3 Desc"
+     },
+     {
+       "RoleName" : "Role 4",
+       "RoleDescription" : "Role 4 Desc"
+     },
+     {
+       "RoleName" : "Role 5",
+       "RoleDescription" : "Role 5 Desc"
+     },
+     {
+       "RoleName" : "Role 6",
+       "RoleDescription" : "Role 6 Desc"
+     },
+     {
+       "RoleName" : "Role 7",
+       "RoleDescription" : "Role 7 Desc"
+     },
+     {
+       "RoleName" : "Role 8",
+       "RoleDescription" : "Role 8 Desc"
+     }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "icon" : "pending",
+    "type" : "Create",
+    "title" : "My Approvals",
+    "visible": true,
+    "key" : "itemswaitingapproval"
+  },
+  {
+    "icon" : "add",
+    "type" : "Create",
+    "title" : "My Forms",
+    "visible": true,
+    "key" : "myforms"
+  }
+]

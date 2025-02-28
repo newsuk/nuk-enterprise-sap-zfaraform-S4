@@ -1,0 +1,63 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:nuk="news.uk.fara.localresources.controls">
+	<Dialog
+		title="{i18n>master.filter.title}"
+		type="Standard"
+		contentWidth="30rem">
+
+		<f:SimpleForm
+			maxContainerCols="2"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title=""
+			labelSpanL="4"
+			labelSpanM="5"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="1"
+			columnsM="1"
+			backgroundDesign="Solid">
+			<f:content>
+				<Text text="{i18n>master.filter.status}">
+					<layoutData>
+						<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+					</layoutData>
+				</Text>
+				<nuk:MultiComboBox items="{FormsStatus>/formsStatus}" selectedKeys="{FormsFilterModel>/statusKeys}" selectionChange="onFilterElementSelected">
+					<core:Item key="{FormsStatus>Status}" text="{FormsStatus>StatusDescription}"/>
+					<nuk:layoutData>
+						<l:GridData span="L8 M7 S12"/>
+					</nuk:layoutData>
+				</nuk:MultiComboBox>
+				<Text text="{i18n>master.filter.dateFrom}">
+					<layoutData>
+						<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+					</layoutData>
+				</Text>
+				<DateTimePicker dateValue="{FormsFilterModel>/dateFrom}" displayFormat="dd/MM/YYYY HH:mm:ss">
+					<layoutData>
+						<l:GridData span="L8 M7 S12"/>
+					</layoutData>
+				</DateTimePicker>
+				<Text text="{i18n>master.filter.dateTo}">
+					<layoutData>
+						<l:GridData span="L4 M5 S12" linebreakL="true" linebreakM="true" linebreakS="true"/>
+					</layoutData>
+				</Text>
+				<DateTimePicker dateValue="{FormsFilterModel>/dateTo}" displayFormat="dd/MM/YYYY HH:mm:ss">
+					<layoutData>
+						<l:GridData span="L8 M7 S12"/>
+					</layoutData>
+				</DateTimePicker>
+			</f:content>
+		</f:SimpleForm>
+
+
+		<beginButton><Button text="{i18n>master.filter.filter}" press="onFilterPressed"/></beginButton>
+		<endButton><Button text="{i18n>master.filter.cancel}" press="onCancelFilterPressed"/></endButton>
+	</Dialog>
+</core:FragmentDefinition>
