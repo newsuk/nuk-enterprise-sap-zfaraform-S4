@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nuk-enterprise-sap-zfaraform-S4
+  description: Component for nuk-enterprise-sap-zfaraform-S4
+  annotations:
+    circleci.com/project-slug: github/newsuk/nuk-enterprise-sap-zfaraform-S4
+    backstage.io/source-location: url:https://github.com/newsuk/nuk-enterprise-sap-zfaraform-S4/
+    github.com/team-slug: newsuk/nuk-enterprise-sap-zfaraform-S4
+    backstage.io/productivity-hub-metrics-enabled: 'true'
+  tags:
+    - bu:newsuk
+spec:
+  type: service
+  lifecycle: production
+  owner: nuk
